@@ -8,9 +8,9 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
-    private boolean mSolved;
+    private String mState;
 
-    public Crime(){
+    public Crime(String mTitle, String mState){
         mId = UUID.randomUUID();
         mDate = new Date();
     }
@@ -30,12 +30,10 @@ public class Crime {
     public Date getmDate(){
         return mDate;
     }
-
-    public boolean ismSolved() {
-        return mSolved;
+    public void setState(String state){
+        mState = state;
     }
-
-    public void setSolved(boolean isChecked) {
-        mSolved = isChecked;
+    public String getmState(){
+        return mState;
     }
 }

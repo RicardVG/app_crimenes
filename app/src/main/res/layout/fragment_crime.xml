@@ -10,31 +10,31 @@
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Titulo"/>
+        android:layout_height="70dp"
+        android:text="Titulo" />
 
     <EditText
         android:id="@+id/crime_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Pon un titulo al crimen."/>
-    
+
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="DETALLES"/>
+        android:layout_height="78dp"
+        android:text="DETALLES" />
 
     <Button
         android:id="@+id/crime_date"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="81dp" />
 
     <CheckBox
         android:id="@+id/crime_solved"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/resuelto"/>
+        android:layout_height="wrap_content"
+        android:text="@string/resuelto" />
 
 
 </LinearLayout>

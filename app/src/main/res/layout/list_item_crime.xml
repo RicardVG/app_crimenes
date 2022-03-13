@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="16dp"
-    android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:ignore="RtlSymmetry">
-    <TextView
-        android:id="@+id/crimeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/textview" />
+    android:padding="8dp">
 
     <TextView
-        android:id="@+id/crimeDate"
-        android:layout_width="wrap_content"
+        android:id="@+id/infoTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/textview" />
+        android:text="Crime Title" />
+
 </LinearLayout>

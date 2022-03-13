@@ -8,9 +8,9 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
-    private String mState;
+    private boolean mState;
 
-    public Crime(String mTitle, String mState){
+    public Crime(String mTitle, boolean mState){
         mId = UUID.randomUUID();
         mDate = new Date();
     }
@@ -30,10 +30,12 @@ public class Crime {
     public Date getmDate(){
         return mDate;
     }
-    public void setState(String state){
-        mState = state;
-    }
-    public String getmState(){
+
+    public boolean ismState() {
         return mState;
+    }
+
+    public void setmState(boolean mState) {
+        this.mState = mState;
     }
 }

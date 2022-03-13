@@ -1,3 +1,5 @@
+/*
+
 package com.androidpprog2.crimenes;
 
 import android.os.Bundle;
@@ -64,3 +66,5 @@ public class CrimeFragment extends Fragment {
         return v;
     }
 }
+
+ */

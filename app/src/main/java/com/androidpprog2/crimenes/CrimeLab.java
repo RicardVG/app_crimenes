@@ -1,0 +1,31 @@
+package com.androidpprog2.crimenes;
+
+import android.content.Context;
+
+import java.util.ArrayList;
+
+public class CrimeLab {
+
+    private static CrimeLab crimeLab;
+    private final ArrayList<Crime> crimeList;
+
+    public static CrimeLab getInstance(Context context) {
+        if (crimeLab == null) {
+            crimeLab = new CrimeLab(context);
+        }
+        return crimeLab;
+    }
+
+    public ArrayList<Crime> getCrimeList() {
+        return crimeList;
+    }
+
+    private CrimeLab(Context context) {
+        crimeList = new ArrayList<>();
+        crimeList.add(new Crime("Sacar al Perro",false));
+        crimeList.add(new Crime("Comprar el Pan",false));
+        crimeList.add(new Crime("Revisar el correo de la Salle",false));
+        crimeList.add(new Crime("Preparar reuniones del dia",false));
+        crimeList.add(new Crime("Hacer ejercicio",false));
+    }
+}

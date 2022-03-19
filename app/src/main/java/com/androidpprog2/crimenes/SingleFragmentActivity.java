@@ -1,4 +1,4 @@
-package com.androidpprog2.crimenes;
+/*package com.androidpprog2.crimenes;
 
 import android.os.Bundle;
 import android.view.View;
@@ -39,3 +39,4 @@ public class SingleFragmentActivity extends FragmentActivity {
     }
 }
 
+*/

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI() {
         CrimeLab crimeLab = CrimeLab.getInstance(this);
-        List<Crime> crimes = crimeLab.getCrimeList();
+        List<Task> crimes = crimeLab.getCrimeList();
 
         mAdapter = new CrimeAdapter(crimes);
         mCrimeRecyclerView.setAdapter(mAdapter);
@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     //Adapter
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
-        private List<Crime> mCrimes;
+        private List<Task> mCrimes;
 
-        public CrimeAdapter(List<Crime> crimes){ mCrimes = crimes; }
+        public CrimeAdapter(List<Task> crimes){ mCrimes = crimes; }
 
         @Override
         public int getItemCount() { return mCrimes.size(); }
@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
-            Crime crime = mCrimes.get(position);
+            Task crime = mCrimes.get(position);
             holder.bind(crime);
         }
     }
 
     //ViewHolder
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Crime mCrime;
+        private Task mCrime;
 
         private TextView mTitleTextView;
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             mTitleTextView = itemView.findViewById(R.id.infoTitle);
         }
 
-        public void bind(Crime crime) {
+        public void bind(Task crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getmTitle());
         }

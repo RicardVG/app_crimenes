@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CrimeLab {
 
     private static CrimeLab crimeLab;
-    private final ArrayList<Crime> crimeList;
+    private final ArrayList<Task> crimeList;
 
     public static CrimeLab getInstance(Context context) {
         if (crimeLab == null) {
@@ -16,16 +16,17 @@ public class CrimeLab {
         return crimeLab;
     }
 
-    public ArrayList<Crime> getCrimeList() {
+    public ArrayList<Task> getCrimeList() {
         return crimeList;
     }
 
     private CrimeLab(Context context) {
         crimeList = new ArrayList<>();
-        crimeList.add(new Crime("Sacar al Perro",false));
-        crimeList.add(new Crime("Comprar el Pan",false));
-        crimeList.add(new Crime("Revisar el correo de la Salle",false));
-        crimeList.add(new Crime("Preparar reuniones del dia",false));
-        crimeList.add(new Crime("Hacer ejercicio",false));
+        crimeList.add(new Task("Sacar al Perro",false));
+        crimeList.add(new Task("Comprar el Pan",false));
+        crimeList.add(new Task("Revisar el correo de la Salle",false));
+        crimeList.add(new Task("Preparar reuniones del dia",false));
+        crimeList.add(new Task("Hacer ejercicio",false));
+
     }
 }

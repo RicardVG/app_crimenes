@@ -1,21 +1,25 @@
 package com.androidpprog2.crimenes;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
-public class Crime {
+public class Task {
 
-    private UUID mId;
+    private String mId;
     private String mTitle;
     private Date mDate;
     private boolean mState;
 
-    public Crime(String mTitle, boolean mState){
-        mId = UUID.randomUUID();
+    public Task(String title, boolean mState){
+        mId = UUID.randomUUID().toString();
         mDate = new Date();
+        mTitle = title;
+
     }
 
-    public UUID getmId() {
+
+    public String getmId() {
         return mId;
     }
 

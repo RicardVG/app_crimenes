@@ -1,19 +1,21 @@
 package com.androidpprog2.crimenes;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 /*
+
 public class CrimeListFragment extends Fragment {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -58,8 +60,8 @@ public class CrimeListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_crime_list, container, false);
     }
 }
+*/
 
- */
 
 public class CrimeListFragment extends Fragment {
 
@@ -68,7 +70,7 @@ public class CrimeListFragment extends Fragment {
 
     public void updateUI() {
         CrimeLab crimeLab = CrimeLab.getInstance(this.getContext());
-        List<Crime> crimes = crimeLab.getCrimeList();
+        List<Task> crimes = crimeLab.getCrimeList();
 
         mAdapter = new CrimeAdapter(crimes);
         mCrimeRecyclerView.setAdapter(mAdapter);
@@ -76,9 +78,9 @@ public class CrimeListFragment extends Fragment {
 
     //Adapter
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
-        private List<Crime> mCrimes;
+        private List<Task> mCrimes;
 
-        public CrimeAdapter(List<Crime> crimes){ mCrimes = crimes; }
+        public CrimeAdapter(List<Task> crimes){ mCrimes = crimes; }
 
         @Override
         public int getItemCount() { return mCrimes.size(); }
@@ -92,27 +94,41 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
-            Crime crime = mCrimes.get(position);
+            Task crime = mCrimes.get(position);
             holder.bind(crime);
         }
     }
 
     //ViewHolder
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Crime mCrime;
+        private Task mCrime;
 
         private TextView mTitleTextView;
+        private CheckBox mCheckBox;
+        private Button mButton;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
             itemView.setOnClickListener(this);
 
-            mTitleTextView = itemView.findViewById(R.id.crime_title);
+            mTitleTextView = itemView.findViewById(R.id.infoTitle);
+            mCheckBox = itemView.findViewById(R.id.crime_solved);
+            mButton = itemView.findViewById(R.id.edit_task);
+
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = NewTask.newIntent(CrimeListFragment.this.getContext(),"TITLE CRIME");
+                    startActivity(intent);
+                }
+            });
         }
 
-        public void bind(Crime crime) {
+        public void bind(Task crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getmTitle());
+            mCheckBox.setOnCheckedChangeListener(mCheckBox.findViewById(R.id.crime_solved));
+
         }
 
         @Override
@@ -123,4 +139,3 @@ public class CrimeListFragment extends Fragment {
         }
     }
 }
-

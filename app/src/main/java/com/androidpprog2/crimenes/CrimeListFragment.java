@@ -62,7 +62,7 @@ public class CrimeListFragment extends Fragment {
 }
 */
 
-
+/*
 public class CrimeListFragment extends Fragment {
 
     private RecyclerView mCrimeRecyclerView;
@@ -139,3 +139,5 @@ public class CrimeListFragment extends Fragment {
         }
     }
 }
+
+ */

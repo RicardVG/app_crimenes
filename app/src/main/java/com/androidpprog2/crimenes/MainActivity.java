@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,14 +67,23 @@ public class MainActivity extends AppCompatActivity {
     //ViewHolder
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Task mCrime;
-
         private TextView mTitleTextView;
+        private CheckBox mCheckBox;
+        private Button mButton;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
             itemView.setOnClickListener(this);
-
             mTitleTextView = itemView.findViewById(R.id.infoTitle);
+            mCheckBox = itemView.findViewById(R.id.crime_solved);
+            mButton = itemView.findViewById(R.id.edit_task);
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = NewTask.newIntent(MainActivity.this,"TITLE CRIME");
+                    startActivity(intent);
+                }
+            });
         }
 
         public void bind(Task crime) {

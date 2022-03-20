@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        CrimeLab crimeLab = CrimeLab.getInstance(this);
-        List<Task> crimes = crimeLab.getCrimeList();
-
-        mAdapter = new CrimeAdapter(crimes);
+        TasksDAO tasksDAO = new TasksDAO(getSharedPreferences("Default",MODE_PRIVATE));
+        mAdapter = new CrimeAdapter(tasksDAO.getTasks());
         mCrimeRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUI();
     }
 
     //Adapter
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
+            TasksDAO tasksDAO = new TasksDAO(getSharedPreferences("Default",MODE_PRIVATE));
             itemView.setOnClickListener(this);
             mTitleTextView = itemView.findViewById(R.id.infoTitle);
             mCheckBox = itemView.findViewById(R.id.crime_solved);
@@ -80,8 +86,17 @@ public class MainActivity extends AppCompatActivity {
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = NewTask.newIntent(MainActivity.this,"TITLE CRIME");
+                    Intent intent = NewTask.newIntent(MainActivity.this,mCrime.getmId());
                     startActivity(intent);
+                }
+            });
+
+            mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    tasksDAO.changeTaskState(mCrime.getmId(),b);
+                    System.out.println(b);
+                    System.out.println(mCrime.getmId());
                 }
             });
         }
@@ -89,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         public void bind(Task crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getmTitle());
+            mCheckBox.setChecked(mCrime.ismState());
+
         }
 
         @Override

@@ -1,3 +1,4 @@
+/*
 package com.androidpprog2.crimenes;
 
 import android.content.Context;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 public class CrimeLab {
 
     private static CrimeLab crimeLab;
-    private final ArrayList<Task> crimeList;
+    private final ArrayList<Task> taskList;
 
     public static CrimeLab getInstance(Context context) {
         if (crimeLab == null) {
@@ -17,16 +18,17 @@ public class CrimeLab {
     }
 
     public ArrayList<Task> getCrimeList() {
-        return crimeList;
+        return taskList;
     }
 
     private CrimeLab(Context context) {
-        crimeList = new ArrayList<>();
-        crimeList.add(new Task("Sacar al Perro",false));
-        crimeList.add(new Task("Comprar el Pan",false));
-        crimeList.add(new Task("Revisar el correo de la Salle",false));
-        crimeList.add(new Task("Preparar reuniones del dia",false));
-        crimeList.add(new Task("Hacer ejercicio",false));
+        taskList = new ArrayList<>();
+        taskList.add(new Task("Sacar al Perro",false));
+        taskList.add(new Task("Comprar el Pan",false));
+        taskList.add(new Task("Revisar el correo de la Salle",false));
+        taskList.add(new Task("Preparar reuniones del dia",false));
+        taskList.add(new Task("Hacer ejercicio",false));
 
     }
 }
+ */

@@ -21,8 +21,12 @@ public class TasksDAO {
     }
 
     public List<Task> getTasks(){
-        String json = sh.getString(DATA_KEY,getDefaultJson());
+        String json = sh.getString(DATA_KEY,"");
+        if (json.equals("")) {
+            json = sh.getString(DATA_KEY,getDefaultJson());
+        }
         Task[] taskArray = gson.fromJson(json,Task[].class);
+        setTasks(Arrays.asList(taskArray));
         return Arrays.asList(taskArray) ;
     }
 

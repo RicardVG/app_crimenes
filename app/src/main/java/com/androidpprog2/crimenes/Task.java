@@ -15,7 +15,7 @@ public class Task {
         mId = UUID.randomUUID().toString();
         mDate = new Date();
         mTitle = title;
-
+        this.mState = mState;
     }
 
 

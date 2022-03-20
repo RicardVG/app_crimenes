@@ -22,16 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
+    private Button mAddTaskButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TasksDAO tasksDAO = new TasksDAO(getSharedPreferences("Default",MODE_PRIVATE));
         mCrimeRecyclerView = (RecyclerView)findViewById(R.id.crimeList);
+        mAddTaskButton = findViewById(R.id.addTaskButton);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(null));
 
         updateUI();
+
+        mAddTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Task task = new Task("",false);
+                tasksDAO.addTask(task);
+                Intent intent = NewTask.newIntent(MainActivity.this,task.getmId(),false);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void updateUI() {
@@ -76,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         private CheckBox mCheckBox;
         private Button mButton;
 
+
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
             TasksDAO tasksDAO = new TasksDAO(getSharedPreferences("Default",MODE_PRIVATE));
@@ -83,10 +97,11 @@ public class MainActivity extends AppCompatActivity {
             mTitleTextView = itemView.findViewById(R.id.infoTitle);
             mCheckBox = itemView.findViewById(R.id.crime_solved);
             mButton = itemView.findViewById(R.id.edit_task);
+
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = NewTask.newIntent(MainActivity.this,mCrime.getmId());
+                    Intent intent = NewTask.newIntent(MainActivity.this,mCrime.getmId(),true);
                     startActivity(intent);
                 }
             });

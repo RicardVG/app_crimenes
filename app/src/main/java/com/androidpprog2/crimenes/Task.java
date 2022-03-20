@@ -1,19 +1,15 @@
 package com.androidpprog2.crimenes;
 
-import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
 
 public class Task {
 
     private String mId;
     private String mTitle;
-    private Date mDate;
     private boolean mState;
 
     public Task(String title, boolean mState){
         mId = UUID.randomUUID().toString();
-        mDate = new Date();
         mTitle = title;
         this.mState = mState;
     }
@@ -29,10 +25,6 @@ public class Task {
 
     public void setmTitle(String title){
         mTitle = title;
-    }
-
-    public Date getmDate(){
-        return mDate;
     }
 
     public boolean ismState() {

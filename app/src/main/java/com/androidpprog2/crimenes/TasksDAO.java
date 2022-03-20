@@ -1,6 +1,5 @@
 package com.androidpprog2.crimenes;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
@@ -39,8 +38,9 @@ public class TasksDAO {
 
     public void addTask(Task task){
         List<Task> tasks = getTasks();
-        tasks.add(task);
-        setTasks(tasks);
+        ArrayList<Task> taskArrayList = new ArrayList<>(tasks);
+        taskArrayList.add(task);
+        setTasks(taskArrayList);
     }
 
     public void editTask(Task task){

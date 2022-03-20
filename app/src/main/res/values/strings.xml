@@ -8,4 +8,5 @@
     <string name="save">SAVE</string>
     <string name="edit_task_second_Activity">EDIT TASK:</string>
     <string name="taskName_hint">task_name</string>
+    <string name="add_task">ADD TASK</string>
 </resources>

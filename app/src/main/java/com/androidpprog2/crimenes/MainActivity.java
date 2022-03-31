@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.androidpprog2.crimenes.api.JsonplaceholderAPI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private Button mAddTaskButton;
+    private List<Task> list_tasks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +68,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
                 Log.d("MAIN","TODOSOK");
+                list_tasks = response.body();
+                updateUI(list_tasks);
             }
 
             @Override
             public void onFailure(Call<List<Task>> call, Throwable t) {
 
             }
+
         });
 
 
-
-        updateUI();
+        //updateUI();
 
         mAddTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,16 +94,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI() {
-        TasksDAO tasksDAO = new TasksDAO(getSharedPreferences("Default",MODE_PRIVATE));
-        mAdapter = new CrimeAdapter(tasksDAO.getTasks());
+    private void updateUI(List<Task> list) {
+        mAdapter = new CrimeAdapter(list);
         mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        updateUI();
+        //updateUI();
     }
 
     //Adapter

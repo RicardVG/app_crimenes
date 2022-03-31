@@ -40,13 +40,13 @@ public class NewTask extends AppCompatActivity {
             textEditTask.setText("New Task");
         }
         EditText editText = (EditText) findViewById(R.id.editText);
-        editText.setText(task.getmTitle());
+        editText.setText(task.getTitle());
         saveTask = (Button) findViewById(R.id.saveTask);
         editText.getText();
         saveTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                task.setmTitle(editText.getText().toString());
+                task.setTitle(editText.getText().toString());
                 tasksDAO.editTask(task);
                 finish();
             }

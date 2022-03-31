@@ -46,8 +46,8 @@ public class TasksDAO {
     public void editTask(Task task){
         List<Task> tasks = getTasks();
         for (Task t: tasks) {
-            if (t.getmId().equals(task.getmId())){
-                t.setmTitle(task.getmTitle());
+            if (t.getId().equals(task.getId())){
+                t.setTitle(task.getTitle());
             }
         }
         setTasks(tasks);
@@ -56,7 +56,7 @@ public class TasksDAO {
     public Task getTasksById(String uuid){
         List<Task> tasks = getTasks();
         for (Task t: tasks) {
-            if (t.getmId().equals(uuid)){
+            if (t.getId().equals(uuid)){
                 return t;
             }
         }
@@ -76,8 +76,8 @@ public class TasksDAO {
     public void changeTaskState(String uuid, boolean checked){
         List<Task> tasks = getTasks();
         for (Task t: tasks) {
-            if (t.getmId().equals(uuid)){
-                t.setmState(checked);
+            if (t.getId().equals(uuid)){
+                t.setCompleted(checked);
             }
         }
         setTasks(tasks);

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,15 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidpprog2.crimenes.api.JsonplaceholderAPI;
+
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +42,28 @@ public class MainActivity extends AppCompatActivity {
         mAddTaskButton = findViewById(R.id.addTaskButton);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(null));
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonplaceholderAPI service = retrofit.create(JsonplaceholderAPI.class);
+
+        service.getTodo("3").enqueue(new Callback<Todo>() {
+
+            @Override
+            public void onResponse(Call<Todo> call, Response<Todo> response) {
+                Log.d("MAIN","TODOOK");
+            }
+
+            @Override
+            public void onFailure(Call<Todo> call, Throwable t) {
+                Log.d("MAIN","TODOOK");
+            }
+        });
+
+
+
         updateUI();
 
         mAddTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Task task = new Task("",false);
                 tasksDAO.addTask(task);
-                Intent intent = NewTask.newIntent(MainActivity.this,task.getmId(),false);
+                Intent intent = NewTask.newIntent(MainActivity.this,task.getId(),false);
                 startActivity(intent);
             }
         });
@@ -101,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = NewTask.newIntent(MainActivity.this,mCrime.getmId(),true);
+                    Intent intent = NewTask.newIntent(MainActivity.this,mCrime.getId(),true);
                     startActivity(intent);
                 }
             });
@@ -109,24 +140,24 @@ public class MainActivity extends AppCompatActivity {
             mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    tasksDAO.changeTaskState(mCrime.getmId(),b);
+                    tasksDAO.changeTaskState(mCrime.getId(),b);
                     System.out.println(b);
-                    System.out.println(mCrime.getmId());
+                    System.out.println(mCrime.getId());
                 }
             });
         }
 
         public void bind(Task crime) {
             mCrime = crime;
-            mTitleTextView.setText(mCrime.getmTitle());
-            mCheckBox.setChecked(mCrime.ismState());
+            mTitleTextView.setText(mCrime.getTitle());
+            mCheckBox.setChecked(mCrime.isCompleted());
 
         }
 
         @Override
         public void onClick(View view) {
             Toast.makeText(MainActivity.this,
-                    mCrime.getmTitle() + " clicked!",
+                    mCrime.getTitle() + " clicked!",
                     Toast.LENGTH_SHORT).show();
         }
     }

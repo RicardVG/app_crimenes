@@ -4,34 +4,35 @@ import java.util.UUID;
 
 public class Task {
 
-    private String mId;
-    private String mTitle;
-    private boolean mState;
+    private Integer userId;
+    private String id;
+    private String title;
+    private boolean completed;
 
     public Task(String title, boolean mState){
-        mId = UUID.randomUUID().toString();
-        mTitle = title;
-        this.mState = mState;
+        id = UUID.randomUUID().toString();
+        this.title = title;
+        this.completed = mState;
     }
 
 
-    public String getmId() {
-        return mId;
+    public String getId() {
+        return id;
     }
 
-    public String getmTitle(){
-        return mTitle;
+    public String getTitle(){
+        return title;
     }
 
-    public void setmTitle(String title){
-        mTitle = title;
+    public void setTitle(String title){
+        this.title = title;
     }
 
-    public boolean ismState() {
-        return mState;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setmState(boolean mState) {
-        this.mState = mState;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

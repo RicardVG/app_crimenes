@@ -49,16 +49,28 @@ public class MainActivity extends AppCompatActivity {
 
         JsonplaceholderAPI service = retrofit.create(JsonplaceholderAPI.class);
 
-        service.getTodo("3").enqueue(new Callback<Todo>() {
+        service.getTodo("3").enqueue(new Callback<Task>() {
 
             @Override
-            public void onResponse(Call<Todo> call, Response<Todo> response) {
+            public void onResponse(Call<Task> call, Response<Task> response) {
                 Log.d("MAIN","TODOOK");
             }
 
             @Override
-            public void onFailure(Call<Todo> call, Throwable t) {
+            public void onFailure(Call<Task> call, Throwable t) {
                 Log.d("MAIN","TODOOK");
+            }
+        });
+
+        service.getTodos().enqueue(new Callback<List<Task>>() {
+            @Override
+            public void onResponse(Call<List<Task>> call, Response<List<Task>> response) {
+                Log.d("MAIN","TODOSOK");
+            }
+
+            @Override
+            public void onFailure(Call<List<Task>> call, Throwable t) {
+
             }
         });
 

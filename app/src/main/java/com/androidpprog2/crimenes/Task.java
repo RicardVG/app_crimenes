@@ -1,18 +1,19 @@
 package com.androidpprog2.crimenes;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Task {
+public class Task implements Serializable {
 
     private Integer userId;
     private String id;
     private String title;
     private boolean completed;
 
-    public Task(String title, boolean mState){
+    public Task(String title, boolean completed){
         id = UUID.randomUUID().toString();
         this.title = title;
-        this.completed = mState;
+        this.completed = completed;
     }
 
 
